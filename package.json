@@ -1,0 +1,44 @@
+{
+  "name": "simple-freesound",
+  "version": "1.0.0",
+  "description": "simple library performing generic queries to freesound's api",
+  "main": "client/index.js",
+  "standalone": "simpleFreesound",
+  "author": "Joseph Larralde",
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "bundle": "node ./bin/runner --bundle",
+    "doc": "jsdoc -c conf.json",
+    "prewatch": "npm run transpile",
+    "transpile": "node ./bin/runner --transpile",
+    "test": "babel-tape-runner test/*_tests.js | tap-spec",
+    "watch": "node ./bin/runner --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ircam-RnD/simple-freesound"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "waves-loaders": "^0.1.2",
+    "xmlhttprequest": "1.8.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-tape-runner": "^2.0.1",
+    "browserify": "^14.4.0",
+    "chalk": "^2.1.0",
+    "fs-extra": "^4.0.1",
+    "jsdoc": "^3.5.4",
+    "jsdoc-template": "github:ircam-jstools/jsdoc-template",
+    "klaw": "2.0.0",
+    "np": "^2.16.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.8.0",
+    "uglify-js": "^3.0.28",
+    "watch": "^1.0.2"
+  }
+}

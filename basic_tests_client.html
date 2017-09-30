@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>simple-freesound tests</title>
+  <script type="text/javascript" src="simple-freesound.umd.js"></script>
+</head>
+<body>
+  <script type="text/javascript">
+    var audioContext = new window.AudioContext();
+    var apiKey = 'your_api_key_here';
+    var sf = new simpleFreesound.SimpleFreesound(apiKey);
+
+    sf.query({
+      search: [ 'drum', 'bass' ],
+      duration: [ 0.01, 1 ]
+    })
+    .then(function(ids) { sf.download(); })
+    .then(function() {
+      console.log(sf.currentSoundsInfo);
+      var src = audioContext.createBufferSource();
+      var ids = Object.keys(sf.currentSoundsInfo);
+      var firstSoundInfo = sf.currentSoundsInfo[ids[0]];
+      console.log(firstSoundInfo);
+
+      src.buffer = firstSoundInfo['buffer'];
+      src.loop = 0;
+      src.connect(audioContext.destination);
+      src.start();
+    });
+  </script>
+</body>
+</html>

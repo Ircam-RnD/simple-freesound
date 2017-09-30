@@ -1,0 +1,27 @@
+{
+  "source": {
+    "include": [
+      "README.md",
+
+      "src/client/index.js",
+      "src/client/SimpleFreesound.js",
+
+      "src/server/index.js",
+      "src/server/SimpleFreesound.js"
+    ]
+  },
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "opts": {
+    "sort": false,
+    "destination": "./docs",
+    "encoding": "utf8",
+    "template": "node_modules/jsdoc-template"
+  },
+  "templates": {
+    "default": {
+      "useLongnameInNav": true
+    }
+  }
+}

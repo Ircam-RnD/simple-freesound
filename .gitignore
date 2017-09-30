@@ -1,0 +1,11 @@
+node_modules/
+
+test/downloads/
+test/ismm_tests.js
+
+**/.DS_Store
+**/Thumbs.db
+
+machin.json
+
+npm-debug.log

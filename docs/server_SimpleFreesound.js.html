@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Documentation - Source: server/SimpleFreesound.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/overrides.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <!-- if home page assume a title is already present in README -->
+    
+    <h1 class="page-title">Source: server/SimpleFreesound.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import http from 'http';
+import path from 'path';
+import fs from 'fs';
+
+import FreesoundQuery from '../common/FreesoundQuery';
+
+const cwd = process.cwd();
+
+/**
+ * Server side class for use in &lt;code>Node.js&lt;/code> allowing to query detailed
+ * info on sounds and download them from
+ * &lt;a href="http://freesound.org" target="_blank">freesound&lt;/a>.
+ * Every function call returns a Promise and updates its &lt;code>soundsInfo&lt;/code>
+ * and &lt;code>currentSoundsInfo&lt;/code> variables.
+ *
+ * @memberof module:server
+ *
+ * @param {String} apiKey - Your api key, as generated from your freesound
+ * developer account when creating a new application.
+ *
+ * @param {String} [destination='.'] - The relative path of a folder where to download files.
+ *
+ * @example
+ * // TODO : write example
+ */
+class SimpleFreesound extends FreesoundQuery {
+  constructor(apiKey, destination = '.') {
+    super(apiKey);
+    this.destination = destination;
+  }
+
+  /**
+   * An object containing every detailed information obtained since instantiation
+   * or last call to &lt;code>clear()&lt;/code>.
+   */
+  get soundsInfo() {
+    return this._mapToObject(this._soundsInfo);
+  }
+
+  /**
+   * An object containing the detailed information obtained from the last call to
+   * &lt;code>query()&lt;/code>, &lt;code>queryFromIds()&lt;/code>, &lt;code>download()&lt;/code>
+   * or &lt;code>queryAndDownload()&lt;/code>.
+   */
+  get currentSoundsInfo() {
+    return this._mapToObject(this._currentSoundsInfo);
+  }
+
+  /**
+   * Get a list of sound ids with detailed information, that correspond to a set of query parameters.
+   *
+   * @param {Object} queryParams - The parameters used to build the query.
+   * @param {Array.String} [queryParams.search] - The search terms that will be used to build the query.
+   * @param {Array.String} [queryParams.username] - A list of usernames to search files from.
+   * @param {Array} [queryParams.duration] - An array of size 2 : [ minDuration, maxDuration ] (in seconds).
+   * If maxDuration is not a number, it will be interpreted as "*" (no maximum duration).
+   *
+   * @returns {Promise} A Promise object that resolves with the list of new sound ids if the query goes well.
+   *
+   * @throws {Error} An error if a problem occurs during the query.
+   */
+  query(queryParams) {
+    return super.query(queryParams);
+  }
+
+  /**
+   * Get detailed information of sounds from their ids.
+   *
+   * @param {Array.Number} ids - The ids of the sounds we want to get the detailed info of.
+   *
+   * @returns {Promise} A promise that will resolve with an array of the sound ids
+   * the detailed info of which needed to be queried.
+   *
+   * @throws {Error} An error if a problem occurs during the query.
+   */
+  queryFromIds(ids) {
+    return super.queryFromIds(ids);
+  }
+
+  /**
+   * Download sounds hq mp3 previews from the ids in &lt;code>currentSoundsInfo&lt;/code>.
+   *
+   * @returns {Promise} A promise that will resolve if the downloads go well.
+   *
+   * @throws {Error} An error if a problem occurs during the downloads.
+   */
+  download() {
+    const ids = Array.from(this._currentSoundsInfo.keys());
+    return this._downloadFilesFromUrls(ids);
+  }
+
+  /**
+   * Download sounds hq mp3 previews from queried sound information.
+   *
+   * @param {Object} queryParams - The parameters used to build the query.
+   * @param {Array.String} [queryParams.search] - The search terms that will be used to build the query.
+   * @param {Array.String} [queryParams.username] - A list of usernames to search files from.
+   * @param {Array} [queryParams.duration] - An array of size 2 : [ minDuration, maxDuration ] (in seconds).
+   * If maxDuration is not a number, it will be interpreted as "*" (no maximum duration).
+   *
+   * @param {String} [destination='.'] - The folder in which to save the downloaded files.
+   *
+   * @returns {Promise} A Promise object that resolves if the downloads go well.
+   *
+   * @throws {Error} An error if a problem occurs during the downloads.
+   */
+  queryAndDownload(queryParams) {
+    return new Promise((resolve, reject) => {
+      super.query(queryParams)
+        .then(updatedIds => this._downloadFilesFromUrls(updatedIds))
+        .then(updatedIds => resolve(updatedIds))
+    });
+  }
+
+  /** @private */
+  _downloadFilesFromUrls(ids) {
+    const promises = [];
+
+    for (let i = 0; i &lt; ids.length; i++)
+      promises.push(this._downloadFileFromUrl(ids[i]));
+
+    return Promise.all(promises);
+  }
+
+  /** @private */
+  _downloadFileFromUrl(id) {
+    return new Promise((resolve, reject) => {
+      const dst = path.join(cwd, this.destination, `${id}.mp3`)
+      const file = fs.createWriteStream(dst);
+      const request = http.get(
+        this._soundsInfo.get(id)['previews']['preview-hq-mp3'],
+        response => {
+          response.pipe(file);
+
+          file.on('finish', () => {
+            file.close();
+            resolve();
+          });
+
+          file.on('error', err => {
+            fs.unlink(dst);
+            throw new Error(`Error downloading file ${id} : ${err}`);
+          });
+        }
+      );
+    });
+  }
+
+  /**
+   * Clear the internal sound information lists.
+   */
+  clear() {
+    this._soundsInfo = new Map();
+    this._currentSoundsInfo = new Map();
+  }
+
+  /**
+   * Retrieve sound information list from a JSON file.
+   *
+   * @param {String} filename - Url of the file to read.
+   */
+  readFromFile(filename) {
+    var si = JSON.parse(fs.readFileSync(filename, 'utf-8'));
+
+    if (si) {
+      this._soundsInfo = new Map();
+
+      for (let i in si)
+        this._soundsInfo.set(si[i]['id'], si[i]);
+    }
+  }
+
+  /**
+   * Dump sound information list to a JSON file.
+   *
+   * @param {String} filename - Url of the file to dump the list of file information to.
+   */
+  writeToFile(filename) {
+    fs.writeFileSync(
+      filename,
+      JSON.stringify(this._mapToObject(this._soundsInfo), null, 2),
+      'utf-8'
+    );
+  }
+};
+
+export default SimpleFreesound;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-client.SimpleFreesound.html">client.SimpleFreesound</a></li><li><a href="module-server.SimpleFreesound.html">server.SimpleFreesound</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    
+        Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Sep 29 2017 17:54:55 GMT+0530 (IST)
+    
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
