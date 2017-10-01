@@ -10,5 +10,5 @@ and filters, and to download their hq mp3 previews right away.
 It is composed of two classes,
 `client/SimpleFreesound` and `server/SimpleFreesound`.
 Both are very similar, except the download methods which keep the resulting
-audio buffers as local variables of the class in the client class, and download
-the mp3 files on the hard drive in the server class.
+audio buffers as local variables in the client class, and download the hq mp3
+preview files on the hard drive in the server class.
