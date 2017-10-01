@@ -34,11 +34,32 @@
     
         <h2>SimpleFreesound</h2>
         
-            <div class="class-description"><p>Server side class for use in <code>Node.js</code>, allowing to query detailed
+            <div class="class-description"><p><b><h5>server.SimpleFreesound</h5></b></p>
+<p>Server side class for use in <code>Node.js</code>, allowing to query detailed
 info on sounds and download them from
 <a href="http://freesound.org" target="_blank">freesound</a>.
 Every function call returns a Promise and updates its <code>soundsInfo</code>
 and <code>currentSoundsInfo</code> variables.</p>
+<!--
+- <a href="module-server.SimpleFreesound.html"><code>constructor</code></a>
+-->
+<ul>
+<li>members<ul>
+<li><a href="module-server.SimpleFreesound.html#soundsInfo"><code>soundsInfo</code></a></li>
+<li><a href="module-server.SimpleFreesound.html#currentSoundsInfo"><code>currentSoundsInfo</code></a></li>
+</ul>
+</li>
+<li>methods<ul>
+<li><a href="module-server.SimpleFreesound.html#query"><code>query</code></a></li>
+<li><a href="module-server.SimpleFreesound.html#queryFromIds"><code>queryFromIds</code></a></li>
+<li><a href="module-server.SimpleFreesound.html#download"><code>download</code></a></li>
+<li><a href="module-server.SimpleFreesound.html#queryAndDownload"><code>queryAndDownload</code></a></li>
+<li><a href="module-server.SimpleFreesound.html#clear"><code>clear</code></a></li>
+<li><a href="module-server.SimpleFreesound.html#readFromFile"><code>readFromFile</code></a></li>
+<li><a href="module-server.SimpleFreesound.html#writeToFile"><code>writeToFile</code></a></li>
+</ul>
+</li>
+</ul>
 <p>Powered by
 <a href="http://freesound.org/docs/api/" target="_blank">freesound api</a>.</p></div>
         
@@ -206,7 +227,7 @@ developer account when creating a new application.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line41">line 41</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line56">line 56</a>
     </li></ul></dd>
     
 
@@ -271,8 +292,9 @@ fs.query({
 
 
 <div class="description">
-    <p>An object containing every detailed information obtained since instantiation
-or last call to <code>clear()</code>.</p>
+    <p>An object containing every detailed information obtained since
+instantiation or last call to
+<a href="module-server.SimpleFreesound.html#clear"><code><code>clear()</code></code></a>.</p>
 </div>
 
 
@@ -362,7 +384,7 @@ or last call to <code>clear()</code>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line53">line 53</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line70">line 70</a>
     </li></ul></dd>
     
 
@@ -387,8 +409,10 @@ or last call to <code>clear()</code>.</p>
 
 <div class="description">
     <p>An object containing the detailed information obtained from the last call to
-<code>query()</code>, <code>queryFromIds()</code>, <code>download()</code>
-or <code>queryAndDownload()</code>.</p>
+<a href="module-server.SimpleFreesound.html#query"><code><code>query()</code></code></a>,
+<a href="module-server.SimpleFreesound.html#queryFromIds"><code><code>queryFromIds()</code></code></a>,
+<a href="module-server.SimpleFreesound.html#download"><code><code>download()</code></code></a> or
+<a href="module-server.SimpleFreesound.html#queryAndDownload"><code><code>queryAndDownload()</code></code></a>.</p>
 </div>
 
 
@@ -478,7 +502,7 @@ or <code>queryAndDownload()</code>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line64">line 64</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line83">line 83</a>
     </li></ul></dd>
     
 
@@ -733,7 +757,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line81">line 81</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line100">line 100</a>
     </li></ul></dd>
     
 
@@ -915,7 +939,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line95">line 95</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line114">line 114</a>
     </li></ul></dd>
     
 
@@ -1078,7 +1102,9 @@ the detailed info of which needed to be queried.</p>
             
 
             <td class="description last"><p>The ids of the sounds to download.
-If <code>null</code>, the ids from <code>currentSoundsInfo</code> will be used.</p></td>
+If <code>null</code>, the ids from
+<a href="module-server.SimpleFreesound.html#currentSoundsInfo"><code><code>currentSoundsInfo</code></code></a>
+will be used.</p></td>
         </tr>
 
     
@@ -1119,7 +1145,7 @@ If <code>null</code>, the ids from <code>currentSoundsInfo</code> will be used.<
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line109">line 109</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line130">line 130</a>
     </li></ul></dd>
     
 
@@ -1484,7 +1510,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line131">line 131</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line152">line 152</a>
     </li></ul></dd>
     
 
@@ -1617,7 +1643,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line176">line 176</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line197">line 197</a>
     </li></ul></dd>
     
 
@@ -1748,7 +1774,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line186">line 186</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line207">line 207</a>
     </li></ul></dd>
     
 
@@ -1879,7 +1905,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line202">line 202</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line223">line 223</a>
     </li></ul></dd>
     
 
@@ -1928,7 +1954,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
 
 <footer>
     
-        Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Oct 01 2017 23:21:13 GMT+0200 (CEST)
+        Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Oct 02 2017 01:04:40 GMT+0200 (CEST)
     
 </footer>
 

@@ -20,6 +20,7 @@
     "template": "node_modules/jsdoc-template"
   },
   "templates": {
+    "cleverLinks": true,
     "default": {
       "useLongnameInNav": true
     }

@@ -6,12 +6,31 @@ const loader = new loaders.AudioBufferLoader();
 /**
  * @memberof module:client
  *
- * @class
+ * @class <b><h5>client.SimpleFreesound</h5></b>
  *
  * Client side class allowing to query detailed info on sounds and download them
  * from <a href="http://freesound.org" target="_blank">freesound</a>.
  * Every function call returns a Promise and updates its <code>soundsInfo</code>
  * and <code>currentSoundsInfo</code> variables.
+ *
+ * <!--
+ * - [constructor]{@link module:client.SimpleFreesound}
+ * -->
+ * - members
+ *     - [soundsInfo]{@link module:client.SimpleFreesound#soundsInfo}
+ *     - [currentSoundsInfo]{@link module:client.SimpleFreesound#currentSoundsInfo}
+ *     - [buffers]{@link module:client.SimpleFreesound#buffers}
+ * - methods
+ *     - [query]{@link module:client.SimpleFreesound#query}
+ *     - [queryFromIds]{@link module:client.SimpleFreesound#queryFromIds}
+ *     - [download]{@link module:client.SimpleFreesound#download}
+ *     - [queryAndDownload]{@link module:client.SimpleFreesound#queryAndDownload}
+ *     - [clear]{@link module:client.SimpleFreesound#clear}
+ *
+ * <!--
+ *     - [readFromFile]{@link module:client.SimpleFreesound#readFromFile}
+ *     - [writeToFile]{@link module:client.SimpleFreesound#writeToFile}
+ * -->
  *
  * Powered by
  * <a href="http://freesound.org/docs/api/" target="_blank">freesound api</a>.
@@ -39,8 +58,9 @@ class SimpleFreesound extends FreesoundQuery {
   }
 
   /**
-   * An object containing every detailed information obtained since instantiation
-   * or last call to <code>clear()</code>.
+   * An object containing every detailed information obtained since
+   * instantiation or last call to
+   * [<code>clear()</code>]{@link module:client.SimpleFreesound#clear}.
    *
    * @property {Object} soundsInfo
    */
@@ -50,8 +70,10 @@ class SimpleFreesound extends FreesoundQuery {
 
   /**
    * An object containing the detailed information obtained from the last call to
-   * <code>query()</code>, <code>queryFromIds()</code>, <code>download()</code>
-   * or <code>queryAndDownload()</code>.
+   * [<code>query()</code>]{@link module:client.SimpleFreesound#query},
+   * [<code>queryFromIds()</code>]{@link module:client.SimpleFreesound#queryFromIds},
+   * [<code>download()</code>]{@link module:client.SimpleFreesound#download} or
+   * [<code>queryAndDownload()</code>]{@link module:client.SimpleFreesound#queryAndDownload}.
    *
    * @property {Object} currentSoundsInfo
    */
@@ -60,7 +82,9 @@ class SimpleFreesound extends FreesoundQuery {
   }
 
   /**
-   * Get the buffers stored internally on download success.
+   * Array of the buffers stored internally on download success, after call to
+   * [<code>download()</code>]{@link module:client.SimpleFreesound#download} or
+   * [<code>queryAndDownload()</code>]{@link module:client.SimpleFreesound#queryAndDownload}.
    *
    * @property {Array.AudioBuffer} buffers
    */
@@ -103,7 +127,9 @@ class SimpleFreesound extends FreesoundQuery {
    * Download hq mp3 previews from their sound ids.
    *
    * @param {Array.Number} [ids=null] - The ids of the sounds to download.
-   * If <code>null</code>, the ids from <code>currentSoundsInfo</code> will be used.
+   * If <code>null</code>, the ids from
+   * [<code>currentSoundsInfo</code>]{@link module:client.SimpleFreesound#currentSoundsInfo}
+   * will be used.
    *
    * @returns {Promise} A promise that will resolve if the downloads go well.
    *
@@ -164,6 +190,14 @@ class SimpleFreesound extends FreesoundQuery {
           resolve(this._buffers);
         });
     });
+  }
+
+  /**
+   * Clear the internal sound information lists.
+   */
+  clear() {
+    this._soundsInfo = new Map();
+    this._currentSoundsInfo = new Map();
   }
 };
 

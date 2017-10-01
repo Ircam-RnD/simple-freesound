@@ -9,13 +9,28 @@ const cwd = process.cwd();
 /**
  * @memberof module:server
  *
- * @class
+ * @class <b><h5>server.SimpleFreesound</h5></b>
  *
  * Server side class for use in <code>Node.js</code>, allowing to query detailed
  * info on sounds and download them from
  * <a href="http://freesound.org" target="_blank">freesound</a>.
  * Every function call returns a Promise and updates its <code>soundsInfo</code>
  * and <code>currentSoundsInfo</code> variables.
+ *
+ * <!--
+ * - [constructor]{@link module:server.SimpleFreesound}
+ * -->
+ * - members
+ *     - [soundsInfo]{@link module:server.SimpleFreesound#soundsInfo}
+ *     - [currentSoundsInfo]{@link module:server.SimpleFreesound#currentSoundsInfo}
+ * - methods
+ *     - [query]{@link module:server.SimpleFreesound#query}
+ *     - [queryFromIds]{@link module:server.SimpleFreesound#queryFromIds}
+ *     - [download]{@link module:server.SimpleFreesound#download}
+ *     - [queryAndDownload]{@link module:server.SimpleFreesound#queryAndDownload}
+ *     - [clear]{@link module:server.SimpleFreesound#clear}
+ *     - [readFromFile]{@link module:server.SimpleFreesound#readFromFile}
+ *     - [writeToFile]{@link module:server.SimpleFreesound#writeToFile}
  *
  * Powered by
  * <a href="http://freesound.org/docs/api/" target="_blank">freesound api</a>.
@@ -39,14 +54,16 @@ const cwd = process.cwd();
  * });
  */
 class SimpleFreesound extends FreesoundQuery {
+  /** @constructor */
   constructor(apiKey, destination = '.') {
     super(apiKey);
     this.destination = destination;
   }
 
   /**
-   * An object containing every detailed information obtained since instantiation
-   * or last call to <code>clear()</code>.
+   * An object containing every detailed information obtained since
+   * instantiation or last call to
+   * [<code>clear()</code>]{@link module:server.SimpleFreesound#clear}.
    *
    * @property {Object} soundsInfo
    */
@@ -56,8 +73,10 @@ class SimpleFreesound extends FreesoundQuery {
 
   /**
    * An object containing the detailed information obtained from the last call to
-   * <code>query()</code>, <code>queryFromIds()</code>, <code>download()</code>
-   * or <code>queryAndDownload()</code>.
+   * [<code>query()</code>]{@link module:server.SimpleFreesound#query},
+   * [<code>queryFromIds()</code>]{@link module:server.SimpleFreesound#queryFromIds},
+   * [<code>download()</code>]{@link module:server.SimpleFreesound#download} or
+   * [<code>queryAndDownload()</code>]{@link module:server.SimpleFreesound#queryAndDownload}.
    *
    * @property {Object} currentSoundsInfo
    */
@@ -100,7 +119,9 @@ class SimpleFreesound extends FreesoundQuery {
    * Download hq mp3 previews from their sound ids.
    *
    * @param {Array.Number} [ids=null] - The ids of the sounds to download.
-   * If <code>null</code>, the ids from <code>currentSoundsInfo</code> will be used.
+   * If <code>null</code>, the ids from
+   * [<code>currentSoundsInfo</code>]{@link module:server.SimpleFreesound#currentSoundsInfo}
+   * will be used.
    *
    * @returns {Promise} A promise that will resolve if the downloads go well.
    *
