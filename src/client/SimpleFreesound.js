@@ -6,6 +6,16 @@ const loader = new loaders.AudioBufferLoader();
 /**
  * @memberof module:client
  *
+ * @class
+ *
+ * Client side class allowing to query detailed info on sounds and download them
+ * from <a href="http://freesound.org" target="_blank">freesound</a>.
+ * Every function call returns a Promise and updates its <code>soundsInfo</code>
+ * and <code>currentSoundsInfo</code> variables.
+ *
+ * Powered by
+ * <a href="http://freesound.org/docs/api/" target="_blank">freesound api</a>.
+ *
  * @param {String} apiKey - Your api key, as generated from your freesound
  * developer account when creating a new application.
  *
@@ -25,11 +35,14 @@ const loader = new loaders.AudioBufferLoader();
 class SimpleFreesound extends FreesoundQuery {
   constructor(apiKey) {
     super(apiKey);
+    this.buffers =[];
   }
 
   /**
    * An object containing every detailed information obtained since instantiation
    * or last call to <code>clear()</code>.
+   *
+   * @property {Object} soundsInfo
    */
   get soundsInfo() {
     return this._mapToObject(this._soundsInfo);
@@ -39,9 +52,20 @@ class SimpleFreesound extends FreesoundQuery {
    * An object containing the detailed information obtained from the last call to
    * <code>query()</code>, <code>queryFromIds()</code>, <code>download()</code>
    * or <code>queryAndDownload()</code>.
+   *
+   * @property {Object} currentSoundsInfo
    */
   get currentSoundsInfo() {
     return this._mapToObject(this._currentSoundsInfo);
+  }
+
+  /**
+   * Get the buffers stored internally on download success.
+   *
+   * @property {Array.AudioBuffer} buffers
+   */
+  get buffers() {
+    return this._buffers;
   }
 
   /**
@@ -103,7 +127,8 @@ class SimpleFreesound extends FreesoundQuery {
    *
    * @param {String} [destination='.'] - The folder in which to save the downloaded files.
    *
-   * @returns {Promise} A Promise object that resolves if the downloads go well.
+   * @returns {Promise} A Promise object that resolves with an array of the
+   * downloaded <code>AndioBufferif</code>s the downloading go well.
    *
    * @throws {Error} An error if a problem occurs during the downloads.
    */
@@ -119,24 +144,24 @@ class SimpleFreesound extends FreesoundQuery {
   }
 
   /** @private */
-  _downloadFilesFromUrls() {
+  _downloadFilesFromUrls(ids) {
     return new Promise((resolve, reject) => {
       const urls = [];
 
-      this._currentSoundsInfo.forEach((value, key) => {
-        urls.push(value['previews']['preview-hq-mp3']);
-      })
+      for (let i = 0; i < ids.length; i++)
+        urls.push(this._currentSoundsInfo.get(ids[i])['previews']['preview-hq-mp3']);
 
       loader.load(urls)
         .then(buffers => {
-          let index = 0;
+          this._buffers = buffers;
 
-          this._currentSoundsInfo.forEach((value, key) => {
-            value['buffer'] = buffers[index];
-            index++;
-          });
+          for (let i = 0; i < ids.length; i++) {
+            const soundInfo = this._currentSoundsInfo.get(ids[i]);
+            soundInfo['buffer'] = buffers[i];
+            this._currentSoundsInfo.set(ids[i], soundInfo);
+          }
 
-          resolve();
+          resolve(this._buffers);
         });
     });
   }

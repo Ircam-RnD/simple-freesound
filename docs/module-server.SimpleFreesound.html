@@ -34,11 +34,13 @@
     
         <h2>SimpleFreesound</h2>
         
-            <div class="class-description"><p>Server side class for use in <code>Node.js</code> allowing to query detailed
+            <div class="class-description"><p>Server side class for use in <code>Node.js</code>, allowing to query detailed
 info on sounds and download them from
 <a href="http://freesound.org" target="_blank">freesound</a>.
 Every function call returns a Promise and updates its <code>soundsInfo</code>
-and <code>currentSoundsInfo</code> variables.</p></div>
+and <code>currentSoundsInfo</code> variables.</p>
+<p>Powered by
+<a href="http://freesound.org/docs/api/" target="_blank">freesound api</a>.</p></div>
         
     
 </header>
@@ -204,7 +206,7 @@ developer account when creating a new application.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line26">line 26</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line41">line 41</a>
     </li></ul></dd>
     
 
@@ -231,7 +233,17 @@ developer account when creating a new application.</p></td>
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>// TODO : write example</code></pre>
+    <pre class="prettyprint"><code>import SimpleFreesound from 'simple-freesound';
+
+const fs = new SimpleFreesound('myApiKey', './downloads');
+fs.query({
+  search: [ 'space', 'insect' ],
+  duration: [ 1, 20 ],
+})
+.then(() => fs.download())
+.then(() => {
+  console.log(fs.currentSoundsInfo);
+});</code></pre>
 
 
 
@@ -269,6 +281,58 @@ or last call to <code>clear()</code>.</p>
 
 
 
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>soundsInfo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
 <dl class="details">
 
     
@@ -298,7 +362,7 @@ or last call to <code>clear()</code>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line36">line 36</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line53">line 53</a>
     </li></ul></dd>
     
 
@@ -333,6 +397,58 @@ or <code>queryAndDownload()</code>.</p>
 
 
 
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>currentSoundsInfo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
 <dl class="details">
 
     
@@ -362,7 +478,7 @@ or <code>queryAndDownload()</code>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line45">line 45</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line64">line 64</a>
     </li></ul></dd>
     
 
@@ -617,7 +733,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line62">line 62</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line81">line 81</a>
     </li></ul></dd>
     
 
@@ -799,7 +915,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line76">line 76</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line95">line 95</a>
     </li></ul></dd>
     
 
@@ -1003,7 +1119,7 @@ If <code>null</code>, the ids from <code>currentSoundsInfo</code> will be used.<
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line90">line 90</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line109">line 109</a>
     </li></ul></dd>
     
 
@@ -1368,7 +1484,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line112">line 112</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line131">line 131</a>
     </li></ul></dd>
     
 
@@ -1501,7 +1617,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line157">line 157</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line176">line 176</a>
     </li></ul></dd>
     
 
@@ -1632,7 +1748,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line167">line 167</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line186">line 186</a>
     </li></ul></dd>
     
 
@@ -1763,7 +1879,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line183">line 183</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line202">line 202</a>
     </li></ul></dd>
     
 
@@ -1812,7 +1928,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
 
 <footer>
     
-        Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Sep 30 2017 14:30:07 GMT+0530 (IST)
+        Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Oct 01 2017 22:41:48 GMT+0200 (CEST)
     
 </footer>
 

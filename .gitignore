@@ -1,13 +1,11 @@
-node_modules/
-
-test/downloads/
-test/ismm_tests.js
-
-ismm_tests_client.html
-
 **/.DS_Store
 **/Thumbs.db
 
-machin.json
+node_modules/
 
+test/downloads/
+test/constants.js
+
+ismm_tests_client.html
+soundsInfo.json
 npm-debug.log

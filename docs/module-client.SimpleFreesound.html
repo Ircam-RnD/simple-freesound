@@ -34,6 +34,13 @@
     
         <h2>SimpleFreesound</h2>
         
+            <div class="class-description"><p>Client side class allowing to query detailed info on sounds and download them
+from <a href="http://freesound.org" target="_blank">freesound</a>.
+Every function call returns a Promise and updates its <code>soundsInfo</code>
+and <code>currentSoundsInfo</code> variables.</p>
+<p>Powered by
+<a href="http://freesound.org/docs/api/" target="_blank">freesound api</a>.</p></div>
+        
     
 </header>
 
@@ -42,6 +49,8 @@
     
         
 
+    
+    <h2>Constructor</h2>
     
 
     <h4 class="name" id="SimpleFreesound"><span class="type-signature"></span>new SimpleFreesound<span class="signature">(apiKey)</span><span class="type-signature"></span></h4>
@@ -141,7 +150,7 @@ developer account when creating a new application.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line25">line 25</a>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line35">line 35</a>
     </li></ul></dd>
     
 
@@ -216,6 +225,58 @@ or last call to <code>clear()</code>.</p>
 
 
 
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>soundsInfo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
 <dl class="details">
 
     
@@ -245,7 +306,7 @@ or last call to <code>clear()</code>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line34">line 34</a>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line47">line 47</a>
     </li></ul></dd>
     
 
@@ -280,6 +341,58 @@ or <code>queryAndDownload()</code>.</p>
 
 
 
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>currentSoundsInfo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
 <dl class="details">
 
     
@@ -309,7 +422,121 @@ or <code>queryAndDownload()</code>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line43">line 43</a>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line58">line 58</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="buffers"><span class="type-signature"></span>buffers<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Get the buffers stored internally on download success.</p>
+</div>
+
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>buffers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.AudioBuffer</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line67">line 67</a>
     </li></ul></dd>
     
 
@@ -564,7 +791,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line60">line 60</a>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line84">line 84</a>
     </li></ul></dd>
     
 
@@ -746,7 +973,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line74">line 74</a>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line98">line 98</a>
     </li></ul></dd>
     
 
@@ -950,7 +1177,7 @@ If <code>null</code>, the ids from <code>currentSoundsInfo</code> will be used.<
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line88">line 88</a>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line112">line 112</a>
     </li></ul></dd>
     
 
@@ -1315,7 +1542,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line110">line 110</a>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line135">line 135</a>
     </li></ul></dd>
     
 
@@ -1371,7 +1598,8 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
 
         
 <div class="param-desc">
-    <p>A Promise object that resolves if the downloads go well.</p>
+    <p>A Promise object that resolves with an array of the
+downloaded <code>AndioBufferif</code>s the downloading go well.</p>
 </div>
 
 
@@ -1415,7 +1643,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
 
 <footer>
     
-        Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Sep 30 2017 14:30:07 GMT+0530 (IST)
+        Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Oct 01 2017 22:41:48 GMT+0200 (CEST)
     
 </footer>
 

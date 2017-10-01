@@ -24,12 +24,12 @@ const universalXMLHttpRequest = (query, method = 'get', postData = null) => {
         if (xhr.status === 200) {
           resolve(xhr.response);
         } else {
-          throw new Error(errorMsg + `response : ${xhr.status} - ${xhr.response}`);
+          throw new Error(`response : ${xhr.status} - ${xhr.response}`);
         }
       }
 
       xhr.onerror = () => {
-        throw new Error(errorMsg + `response : ${xhr.status} - ${xhr.response}`);
+        throw new Error(`response : ${xhr.status} - ${xhr.response}`);
       }
     }
 

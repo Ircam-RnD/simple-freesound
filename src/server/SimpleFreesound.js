@@ -7,13 +7,18 @@ import FreesoundQuery from '../common/FreesoundQuery';
 const cwd = process.cwd();
 
 /**
- * Server side class for use in <code>Node.js</code> allowing to query detailed
+ * @memberof module:server
+ *
+ * @class
+ *
+ * Server side class for use in <code>Node.js</code>, allowing to query detailed
  * info on sounds and download them from
  * <a href="http://freesound.org" target="_blank">freesound</a>.
  * Every function call returns a Promise and updates its <code>soundsInfo</code>
  * and <code>currentSoundsInfo</code> variables.
  *
- * @memberof module:server
+ * Powered by
+ * <a href="http://freesound.org/docs/api/" target="_blank">freesound api</a>.
  *
  * @param {String} apiKey - Your api key, as generated from your freesound
  * developer account when creating a new application.
@@ -21,7 +26,17 @@ const cwd = process.cwd();
  * @param {String} [destination='.'] - The relative path of a folder where to download files.
  *
  * @example
- * // TODO : write example
+ * import SimpleFreesound from 'simple-freesound';
+ *
+ * const fs = new SimpleFreesound('myApiKey', './downloads');
+ * fs.query({
+ *   search: [ 'space', 'insect' ],
+ *   duration: [ 1, 20 ],
+ * })
+ * .then(() => fs.download())
+ * .then(() => {
+ *   console.log(fs.currentSoundsInfo);
+ * });
  */
 class SimpleFreesound extends FreesoundQuery {
   constructor(apiKey, destination = '.') {
@@ -32,6 +47,8 @@ class SimpleFreesound extends FreesoundQuery {
   /**
    * An object containing every detailed information obtained since instantiation
    * or last call to <code>clear()</code>.
+   *
+   * @property {Object} soundsInfo
    */
   get soundsInfo() {
     return this._mapToObject(this._soundsInfo);
@@ -41,6 +58,8 @@ class SimpleFreesound extends FreesoundQuery {
    * An object containing the detailed information obtained from the last call to
    * <code>query()</code>, <code>queryFromIds()</code>, <code>download()</code>
    * or <code>queryAndDownload()</code>.
+   *
+   * @property {Object} currentSoundsInfo
    */
   get currentSoundsInfo() {
     return this._mapToObject(this._currentSoundsInfo);

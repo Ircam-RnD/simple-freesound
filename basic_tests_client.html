@@ -11,21 +11,29 @@
     var sf = new simpleFreesound.SimpleFreesound(apiKey);
 
     sf.query({
-      search: [ 'drum', 'bass' ],
-      duration: [ 0.01, 1 ]
+      search: [ 'drum', 'snare' ],
+      duration: [ 0.01, 0.2 ]
     })
-    .then(function(ids) { sf.download(); })
-    .then(function() {
-      console.log(sf.currentSoundsInfo);
-      var src = audioContext.createBufferSource();
+    .then(function(ids) { return sf.download(); })
+    .then(function(buffers) {
       var ids = Object.keys(sf.currentSoundsInfo);
-      var firstSoundInfo = sf.currentSoundsInfo[ids[0]];
-      console.log(firstSoundInfo);
+      // console.log(ids);
+      // var firstSoundInfo = sf.currentSoundsInfo[ids[ids.length - 1]];
+      // console.log(firstSoundInfo);
 
-      src.buffer = firstSoundInfo['buffer'];
+      // We can access the buffers in a variety of ways :
+      var index = 0;//ids.length - 1;
+      // var b = buffers[0];
+      // var b = sf.getBuffers();
+      // var b = firstSoundInfo[0];
+      var b = sf.currentSoundsInfo[ids[index]].buffer;
+      // console.log(b);
+
+      var src = audioContext.createBufferSource();
+      src.buffer = b;
       src.loop = 0;
       src.connect(audioContext.destination);
-      src.start();
+      src.start(0);
     });
   </script>
 </body>
