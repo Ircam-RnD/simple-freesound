@@ -1,6 +1,6 @@
 {
   "name": "simple-freesound",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "simple library performing generic queries to freesound's api",
   "main": "client/index.js",
   "standalone": "simpleFreesound",
