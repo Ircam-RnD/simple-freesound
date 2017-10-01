@@ -14,8 +14,6 @@ const cwd = process.cwd();
  * Server side class for use in <code>Node.js</code>, allowing to query detailed
  * info on sounds and download them from
  * <a href="http://freesound.org" target="_blank">freesound</a>.
- * Every function call returns a Promise and updates its <code>soundsInfo</code>
- * and <code>currentSoundsInfo</code> variables.
  *
  * <!--
  * - [constructor]{@link module:server.SimpleFreesound}
