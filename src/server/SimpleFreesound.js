@@ -15,9 +15,6 @@ const cwd = process.cwd();
  * info on sounds and download them from
  * <a href="http://freesound.org" target="_blank">freesound</a>.
  *
- * <!--
- * - [constructor]{@link module:server.SimpleFreesound}
- * -->
  * - members
  *     - [soundsInfo]{@link module:server.SimpleFreesound#soundsInfo}
  *     - [currentSoundsInfo]{@link module:server.SimpleFreesound#currentSoundsInfo}
@@ -53,9 +50,10 @@ const cwd = process.cwd();
  */
 class SimpleFreesound extends FreesoundQuery {
   /** @constructor */
-  constructor(apiKey, destination = '.') {
+  constructor(apiKey, destination = '.', publicPath = 'public') {
     super(apiKey);
     this.destination = destination;
+    this.publicPath = publicPath;
   }
 
   /**
@@ -168,14 +166,17 @@ class SimpleFreesound extends FreesoundQuery {
   /** @private */
   _downloadFileFromUrl(id) {
     return new Promise((resolve, reject) => {
-      const dst = path.join(cwd, this.destination, `${id}.mp3`)
+      const dst = path.join(cwd, this.publicPath, this.destination, `${id}.mp3`)
       const file = fs.createWriteStream(dst);
       const request = http.get(
-        this._soundsInfo.get(id)['previews']['preview-hq-mp3'],
+        this._soundsInfo.get(id).previews['preview-hq-mp3'],
         response => {
           response.pipe(file);
 
           file.on('finish', () => {
+            const url = path.join(this.destination, `${id}.mp3`);
+            this._soundsInfo.get(id).localUrl = url;
+            this._currentSoundsInfo.get(id).localUrl = url;
             file.close();
             resolve();
           });

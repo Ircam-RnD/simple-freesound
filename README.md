@@ -5,7 +5,7 @@ access the basic functionalities of
 [freesound api](http://freesound.org/docs/api/).
 
 Its main goal is to ease the process of querying sounds from a few search terms
-and filters, and to download their hq mp3 previews right away.
+and filters and downloading their hq mp3 previews.
 
 It is composed of two classes,
 `client/SimpleFreesound` and `server/SimpleFreesound`.

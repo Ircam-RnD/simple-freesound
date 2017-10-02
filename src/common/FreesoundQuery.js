@@ -106,7 +106,6 @@ class FreesoundQuery {
 
       query = query.trim();
       query += suffix;
-      console.log(query);
 
       universalXMLHttpRequest(query)
         .then(response => {

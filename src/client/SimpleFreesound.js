@@ -11,9 +11,6 @@ const loader = new loaders.AudioBufferLoader();
  * Client side class allowing to query detailed info on sounds and download them
  * from <a href="http://freesound.org" target="_blank">freesound</a>.
  *
- * <!--
- * - [constructor]{@link module:client.SimpleFreesound}
- * -->
  * - members
  *     - [soundsInfo]{@link module:client.SimpleFreesound#soundsInfo}
  *     - [currentSoundsInfo]{@link module:client.SimpleFreesound#currentSoundsInfo}
@@ -24,11 +21,6 @@ const loader = new loaders.AudioBufferLoader();
  *     - [download]{@link module:client.SimpleFreesound#download}
  *     - [queryAndDownload]{@link module:client.SimpleFreesound#queryAndDownload}
  *     - [clear]{@link module:client.SimpleFreesound#clear}
- *
- * <!--
- *     - [readFromFile]{@link module:client.SimpleFreesound#readFromFile}
- *     - [writeToFile]{@link module:client.SimpleFreesound#writeToFile}
- * -->
  *
  * Powered by
  * <a href="http://freesound.org/docs/api/" target="_blank">freesound api</a>.
