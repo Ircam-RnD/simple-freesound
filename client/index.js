@@ -14,4 +14,4 @@ Object.defineProperty(exports, 'SimpleFreesound', {
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbImRlZmF1bHQiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O29EQUtTQSxPIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBAbW9kdWxlIGNsaWVudFxuICogQGlnbm9yZVxuICovXG5cbmV4cG9ydCB7IGRlZmF1bHQgYXMgU2ltcGxlRnJlZXNvdW5kIH0gZnJvbSAnLi9TaW1wbGVGcmVlc291bmQnOyJdfQ==
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbImRlZmF1bHQiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O29EQUFTQSxPIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IHsgZGVmYXVsdCBhcyBTaW1wbGVGcmVlc291bmQgfSBmcm9tICcuL1NpbXBsZUZyZWVzb3VuZCc7Il19

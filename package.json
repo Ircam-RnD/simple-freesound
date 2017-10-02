@@ -2,7 +2,7 @@
   "name": "simple-freesound",
   "version": "0.0.1",
   "description": "simple library performing generic queries to freesound's api",
-  "main": "client/index.js",
+  "main": "",
   "standalone": "simpleFreesound",
   "author": "Joseph Larralde",
   "license": "BSD-3-Clause",
