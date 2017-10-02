@@ -82,7 +82,7 @@ class FreesoundQuery {
             const maxDuration = params.duration[1] > minDuration ? params.duration[1] : minDuration;
             query += `${maxDuration}] `;
           } else { // === '*'
-            query += '*';
+            query += '*]';
           }
         }
 
@@ -106,6 +106,7 @@ class FreesoundQuery {
 
       query = query.trim();
       query += suffix;
+      console.log(query);
 
       universalXMLHttpRequest(query)
         .then(response => {
