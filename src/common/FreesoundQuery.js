@@ -33,7 +33,9 @@ class FreesoundQuery {
    */
   query(queryParams) {
     return this._getSoundListFromParameters(queryParams)
-      .then(this._getDetailedInfoFromIds)
+      .then(updatedIds => {
+        return this._getDetailedInfoFromIds(Array.from(this._currentSoundsInfo.keys()));
+      });
   }
 
   /**
@@ -52,9 +54,9 @@ class FreesoundQuery {
    * @private
    * @todo allow to choose between OR and AND to combine usernames in the query.
    */
-  _getSoundListFromParameters(params, clear = false) {
+  _getSoundListFromParameters(params, clear = true) {
     return new Promise((resolve, reject) => {
-      if (clear) this._soundsInfo.clear();
+      if (clear) this._currentSoundsInfo.clear();
 
       let query = 'http://freesound.org/apiv2/search/text/?';
       const suffix = `&token=${this.apiKey}`;
@@ -111,9 +113,13 @@ class FreesoundQuery {
         .then(response => {
             const res = response.results;
 
-            for (let r in res)
+            for (let r in res) {
+              // console.log(res[r]);
+              this._currentSoundsInfo.set(res[r]['id'], res[r]);
+
               if (!this._soundsInfo.has(res[r]['id']))
                 this._soundsInfo.set(res[r]['id'], res[r]);
+            }
 
             resolve();
         })
@@ -125,13 +131,22 @@ class FreesoundQuery {
     this._currentSoundsInfo.clear();
     const promises = [];
 
-    this._soundsInfo.forEach((info, id) => {
-      if (!this._soundsInfo.get(id).previews) {// detailed information was not previously stored
+    ids.forEach(id => {
+      const info = this._soundsInfo.get(id);
+
+      if (!info.previews) // detailed information was not previously stored
         promises.push(this._getDetailedInfoFromId(id));
-      } else {
+      else
         this._currentSoundsInfo.set(id, info);
-      }
     });
+
+    // this._soundsInfo.forEach((info, id) => {
+    //   if (!this._soundsInfo.get(id).previews) { // detailed information was not previously stored
+    //     promises.push(this._getDetailedInfoFromId(id));
+    //   } else {
+    //     this._currentSoundsInfo.set(id, info);
+    //   }
+    // });
 
     return Promise.all(promises);
   }

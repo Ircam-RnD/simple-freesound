@@ -22,7 +22,7 @@ if (!fs.existsSync(absDownloadFolder))
 test('basic', (t) => {
   t.plan(1);
 
-  const sf = new SimpleFreesound(apiKey, downloadFolder);
+  const sf = new SimpleFreesound(apiKey, downloadFolder, '.');
 
   sf.query({
     search: [ 'abstract' ],

@@ -159,6 +159,15 @@ class SimpleFreesound extends FreesoundQuery {
     });
   }
 
+  /***
+   * Cancel all unresolved yet promises (queries and downloads).
+   */
+  abort() {
+    // TODO (no native way to cancel unresolved yet promises)
+    // maybe using Promise.race() with a cancellable promise and
+    // the result of Promise.all in a same Array / iterable ... ?
+  }
+
   /** @private */
   _downloadFilesFromUrls(ids) {
     return new Promise((resolve, reject) => {
