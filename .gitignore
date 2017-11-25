@@ -10,3 +10,4 @@ test/constants.js
 ismm_tests_client.html
 soundsInfo.json
 npm-debug.log
+package-lock.json

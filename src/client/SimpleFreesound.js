@@ -44,7 +44,7 @@ const loader = new loaders.AudioBufferLoader();
 class SimpleFreesound extends FreesoundQuery {
   constructor(apiKey) {
     super(apiKey);
-    this.buffers =[];
+    this._buffers =[];
   }
 
   /**
@@ -173,8 +173,14 @@ class SimpleFreesound extends FreesoundQuery {
     return new Promise((resolve, reject) => {
       const urls = [];
 
-      for (let i = 0; i < ids.length; i++)
-        urls.push(this._currentSoundsInfo.get(ids[i])['previews']['preview-hq-mp3']);
+      for (let i = 0; i < ids.length; i++) {
+        let url = this._currentSoundsInfo.get(ids[i])['previews']['preview-hq-mp3'];
+        url = url.split(':');//.splice(1);
+        url[0] = 'https';
+        url = url.join(':');
+
+        urls.push(url);
+      }
 
       loader.load(urls)
         .then(buffers => {

@@ -1,4 +1,5 @@
 import http from 'http';
+import https from 'https';
 import path from 'path';
 import fs from 'fs';
 
@@ -177,12 +178,19 @@ class SimpleFreesound extends FreesoundQuery {
     return new Promise((resolve, reject) => {
       const dst = path.join(cwd, this.publicPath, this.destination, `${id}.mp3`)
       const file = fs.createWriteStream(dst);
-      const request = http.get(
-        this._soundsInfo.get(id).previews['preview-hq-mp3'],
+      let url = this._soundsInfo.get(id).previews['preview-hq-mp3'];
+      url = url.split(':');
+      url[0] = 'https';
+      url = url.join(':');
+
+      const request = https.get(
+        url,
         response => {
+          console.log(response.statusCode);
           response.pipe(file);
 
           file.on('finish', () => {
+            console.log('finished !');
             const url = path.join(this.destination, `${id}.mp3`);
             this._soundsInfo.get(id).localUrl = url;
             this._currentSoundsInfo.get(id).localUrl = url;
@@ -191,6 +199,7 @@ class SimpleFreesound extends FreesoundQuery {
           });
 
           file.on('error', err => {
+            console.error(err);
             fs.unlink(dst);
             throw new Error(`Error downloading file ${id} : ${err}`);
           });
