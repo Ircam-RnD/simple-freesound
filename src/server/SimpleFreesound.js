@@ -186,11 +186,9 @@ class SimpleFreesound extends FreesoundQuery {
       const request = https.get(
         url,
         response => {
-          console.log(response.statusCode);
           response.pipe(file);
 
           file.on('finish', () => {
-            console.log('finished !');
             const url = path.join(this.destination, `${id}.mp3`);
             this._soundsInfo.get(id).localUrl = url;
             this._currentSoundsInfo.get(id).localUrl = url;
