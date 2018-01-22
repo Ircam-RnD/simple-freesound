@@ -68,6 +68,10 @@ class SimpleFreesound extends FreesoundQuery {
     return this._mapToObject(this._soundsInfo);
   }
 
+  set soundsInfo(si) {
+    this._soundsInfo = this._objectToMap(si);
+  }
+
   /**
    * An object containing the detailed information obtained from the last call to
    * [<code>query()</code>]{@link module:server.SimpleFreesound#query},
@@ -79,6 +83,10 @@ class SimpleFreesound extends FreesoundQuery {
    */
   get currentSoundsInfo() {
     return this._mapToObject(this._currentSoundsInfo);
+  }
+
+  set currentSoundsInfo(csi) {
+    this._currentSoundsInfo = this._objectToMap(csi);
   }
 
   /**
@@ -125,8 +133,9 @@ class SimpleFreesound extends FreesoundQuery {
    * @throws {Error} An error if a problem occurs during the downloads.
    */
   download(ids = null) {
-    if (ids === null)
+    if (ids === null) {
       ids = Array.from(this._currentSoundsInfo.keys());
+    }
 
     return this._downloadFilesFromUrls(ids);
   }
@@ -167,8 +176,9 @@ class SimpleFreesound extends FreesoundQuery {
   _downloadFilesFromUrls(ids) {
     const promises = [];
 
-    for (let i = 0; i < ids.length; i++)
+    for (let i = 0; i < ids.length; i++) {
       promises.push(this._downloadFileFromUrl(ids[i]));
+    }
 
     return Promise.all(promises);
   }
@@ -225,8 +235,9 @@ class SimpleFreesound extends FreesoundQuery {
     if (si) {
       this._soundsInfo = new Map();
 
-      for (let i in si)
+      for (let i in si) {
         this._soundsInfo.set(si[i]['id'], si[i]);
+      }
     }
   }
 

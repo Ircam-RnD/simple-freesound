@@ -58,6 +58,10 @@ class SimpleFreesound extends FreesoundQuery {
     return this._mapToObject(this._soundsInfo);
   }
 
+  set soundsInfo(si) {
+    this._soundsInfo = this._objectToMap(si);
+  }
+
   /**
    * An object containing the detailed information obtained from the last call to
    * [<code>query()</code>]{@link module:client.SimpleFreesound#query},
@@ -69,6 +73,10 @@ class SimpleFreesound extends FreesoundQuery {
    */
   get currentSoundsInfo() {
     return this._mapToObject(this._currentSoundsInfo);
+  }
+
+  set currentSoundsInfo(csi) {
+    this._currentSoundsInfo = this._objectToMap(csi);
   }
 
   /**

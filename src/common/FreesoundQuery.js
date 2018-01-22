@@ -185,6 +185,16 @@ class FreesoundQuery {
 
     return res;
   }
+
+  _objectToMap(obj) {
+    const res = new Map();
+
+    for (let key in obj) {
+      res.set(key, obj[key]);
+    }
+
+    return res;
+  }
 };
 
 export default FreesoundQuery;
