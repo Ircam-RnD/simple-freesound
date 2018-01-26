@@ -68,7 +68,7 @@ from <a href="http://freesound.org" target="_blank">freesound</a>.</p>
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="SimpleFreesound"><span class="type-signature"></span>new SimpleFreesound<span class="signature">(apiKey)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="SimpleFreesound"><span class="type-signature"></span>new SimpleFreesound<span class="signature">(apiKey, storeSoundsInfo<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
@@ -95,7 +95,11 @@ from <a href="http://freesound.org" target="_blank">freesound</a>.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -120,11 +124,63 @@ from <a href="http://freesound.org" target="_blank">freesound</a>.</p>
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>Your api key, as generated from your freesound
 developer account when creating a new application.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>storeSoundsInfo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Store all sounds detailed informations,
+including preview urls, to optimize the number of queries to the API (can be memory consuming).</p></td>
         </tr>
 
     
@@ -165,7 +221,7 @@ developer account when creating a new application.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line44">line 44</a>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line46">line 46</a>
     </li></ul></dd>
     
 
@@ -322,7 +378,7 @@ instantiation or last call to
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line57">line 57</a>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line59">line 59</a>
     </li></ul></dd>
     
 
@@ -440,7 +496,7 @@ instantiation or last call to
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line74">line 74</a>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line76">line 76</a>
     </li></ul></dd>
     
 
@@ -556,7 +612,7 @@ instantiation or last call to
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line89">line 89</a>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line91">line 91</a>
     </li></ul></dd>
     
 
@@ -811,7 +867,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line106">line 106</a>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line108">line 108</a>
     </li></ul></dd>
     
 
@@ -993,7 +1049,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line120">line 120</a>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line122">line 122</a>
     </li></ul></dd>
     
 
@@ -1199,7 +1255,7 @@ will be used.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line136">line 136</a>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line138">line 138</a>
     </li></ul></dd>
     
 
@@ -1564,7 +1620,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line159">line 159</a>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line161">line 161</a>
     </li></ul></dd>
     
 
@@ -1698,7 +1754,7 @@ downloaded <code>AndioBufferif</code>s the downloading go well.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line211">line 211</a>
+        <a href="client_SimpleFreesound.js.html">client/SimpleFreesound.js</a>, <a href="client_SimpleFreesound.js.html#line213">line 213</a>
     </li></ul></dd>
     
 
@@ -1747,7 +1803,7 @@ downloaded <code>AndioBufferif</code>s the downloading go well.</p>
 
 <footer>
     
-        Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jan 22 2018 10:47:03 GMT+0100 (CET)
+        Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jan 26 2018 12:12:14 GMT+0100 (CET)
     
 </footer>
 

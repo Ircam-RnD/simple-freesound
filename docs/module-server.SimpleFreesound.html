@@ -70,7 +70,7 @@ info on sounds and download them from
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="SimpleFreesound"><span class="type-signature"></span>new SimpleFreesound<span class="signature">(apiKey, destination<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="SimpleFreesound"><span class="type-signature"></span>new SimpleFreesound<span class="signature">(apiKey, options)</span><span class="type-signature"></span></h4>
 
     
 
@@ -86,6 +86,72 @@ info on sounds and download them from
 
     <h5>Parameters:</h5>
     
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>apiKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Your api key, as generated from your freesound
+developer account when creating a new application.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Configuration options.</p>
+                <h6>Properties</h6>
+                
 
 <table class="params">
     <thead>
@@ -113,7 +179,7 @@ info on sounds and download them from
 
         <tr>
             
-                <td class="name"><code>apiKey</code></td>
+                <td class="name"><code>publicPath</code></td>
             
 
             <td class="type">
@@ -128,6 +194,8 @@ info on sounds and download them from
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -138,11 +206,12 @@ info on sounds and download them from
             
                 <td class="default">
                 
+                    'public'
+                
                 </td>
             
 
-            <td class="description last"><p>Your api key, as generated from your freesound
-developer account when creating a new application.</p></td>
+            <td class="description last"><p>The public path (relative to node's cwd) of the folder where clients can access files.</p></td>
         </tr>
 
     
@@ -181,7 +250,54 @@ developer account when creating a new application.</p></td>
                 </td>
             
 
-            <td class="description last"><p>The relative path of a folder where to download files.</p></td>
+            <td class="description last"><p>The path (relative to the public path) of the folder where to download files.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>storeSoundsInfo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Store all sounds detailed informations,
+including preview urls, to optimize the number of queries to the API (can be memory consuming).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -222,7 +338,7 @@ developer account when creating a new application.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line52">line 52</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line63">line 63</a>
     </li></ul></dd>
     
 
@@ -251,7 +367,9 @@ developer account when creating a new application.</p></td>
     
     <pre class="prettyprint"><code>import SimpleFreesound from 'simple-freesound';
 
-const fs = new SimpleFreesound('myApiKey', './downloads');
+const fs = new SimpleFreesound('myApiKey', {
+  destination: './downloads'
+});
 fs.query({
   search: [ 'space', 'insect' ],
   duration: [ 1, 20 ],
@@ -379,7 +497,7 @@ instantiation or last call to
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line67">line 67</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line79">line 79</a>
     </li></ul></dd>
     
 
@@ -497,7 +615,7 @@ instantiation or last call to
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line84">line 84</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line96">line 96</a>
     </li></ul></dd>
     
 
@@ -752,7 +870,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line105">line 105</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line117">line 117</a>
     </li></ul></dd>
     
 
@@ -934,7 +1052,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line119">line 119</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line131">line 131</a>
     </li></ul></dd>
     
 
@@ -1140,7 +1258,7 @@ will be used.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line135">line 135</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line147">line 147</a>
     </li></ul></dd>
     
 
@@ -1505,7 +1623,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line158">line 158</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line170">line 170</a>
     </li></ul></dd>
     
 
@@ -1638,7 +1756,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line222">line 222</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line234">line 234</a>
     </li></ul></dd>
     
 
@@ -1769,7 +1887,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line232">line 232</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line244">line 244</a>
     </li></ul></dd>
     
 
@@ -1900,7 +2018,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line249">line 249</a>
+        <a href="server_SimpleFreesound.js.html">server/SimpleFreesound.js</a>, <a href="server_SimpleFreesound.js.html#line261">line 261</a>
     </li></ul></dd>
     
 
@@ -1949,7 +2067,7 @@ If maxDuration is not a number, it will be interpreted as &quot;*&quot; (no maxi
 
 <footer>
     
-        Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jan 22 2018 10:47:03 GMT+0100 (CET)
+        Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jan 26 2018 12:12:14 GMT+0100 (CET)
     
 </footer>
 
