@@ -7,6 +7,12 @@ import FreesoundQuery from '../common/FreesoundQuery';
 
 const cwd = process.cwd();
 
+const defaults = {
+  destination: '.',
+  publicPath: 'public',
+  storeSoundsInfo: false,
+};
+
 /**
  * @memberof module:server
  *
@@ -33,13 +39,18 @@ const cwd = process.cwd();
  *
  * @param {String} apiKey - Your api key, as generated from your freesound
  * developer account when creating a new application.
- *
- * @param {String} [destination='.'] - The relative path of a folder where to download files.
+ * @param {Object} options - Configuration options.
+ * @param {String} [options.publicPath='public'] - The public path (relative to node's cwd) of the folder where clients can access files.
+ * @param {String} [options.destination='.'] - The path (relative to the public path) of the folder where to download files.
+ * @param {Boolean} [options.storeSoundsInfo=false] - Store all sounds detailed informations,
+ * including preview urls, to optimize the number of queries to the API (can be memory consuming).
  *
  * @example
  * import SimpleFreesound from 'simple-freesound';
  *
- * const fs = new SimpleFreesound('myApiKey', './downloads');
+ * const fs = new SimpleFreesound('myApiKey', {
+ *   destination: './downloads'
+ * });
  * fs.query({
  *   search: [ 'space', 'insect' ],
  *   duration: [ 1, 20 ],
@@ -51,10 +62,11 @@ const cwd = process.cwd();
  */
 class SimpleFreesound extends FreesoundQuery {
   /** @constructor */
-  constructor(apiKey, destination = '.', publicPath = 'public') {
-    super(apiKey);
-    this.destination = destination;
-    this.publicPath = publicPath;
+  constructor(apiKey, options = {}) {
+    const opts = Object.assign({}, defaults, options);
+    super(apiKey, opts.storeSoundsInfo);
+    this.destination = opts.destination;
+    this.publicPath = opts.publicPath;
   }
 
   /**

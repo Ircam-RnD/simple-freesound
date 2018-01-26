@@ -5,10 +5,14 @@ import { universalXMLHttpRequest } from './util';
  *
  * @param {String} apiKey - Your api key, as generated from your freesound
  * developer account when creating a new application.
+ * @param {Boolean} [storeSoundsInfo=false] - Store all sounds detailed informations,
+ * including preview urls, to optimize the number of queries to the API (can be memory consuming).
  */
 class FreesoundQuery {
-  constructor(apiKey) {
+  constructor(apiKey, storeSoundsInfo = false) {
     this.apiKey = apiKey;
+    this.storeSoundsInfo = storeSoundsInfo;
+
     this._soundsInfo = new Map();
     this._currentSoundsInfo = new Map();
 
@@ -128,6 +132,10 @@ class FreesoundQuery {
 
   /** @private */
   _getDetailedInfoFromIds(ids) {
+    if (!this.storeSoundsInfo) {
+      this._soundsInfo.clear();
+    }
+
     this._currentSoundsInfo.clear();
     const promises = [];
 
@@ -140,22 +148,12 @@ class FreesoundQuery {
         this._currentSoundsInfo.set(id, info);
     });
 
-    // this._soundsInfo.forEach((info, id) => {
-    //   if (!this._soundsInfo.get(id).previews) { // detailed information was not previously stored
-    //     promises.push(this._getDetailedInfoFromId(id));
-    //   } else {
-    //     this._currentSoundsInfo.set(id, info);
-    //   }
-    // });
-
     return Promise.all(promises);
   }
 
   /** @private */
   _getDetailedInfoFromId(id) {
     return new Promise((resolve, reject) => {
-      // DOES THIS PREVENT OTHER FIELDS THAN "preview" TO BE RETURNED ?
-      // let query = `http://www.freesound.org/apiv2/sounds/${id}/?filter=preview`;
       let query = `http://www.freesound.org/apiv2/sounds/${id}/?`;
       const suffix = `&token=${this.apiKey}`;
       query += suffix;
@@ -163,9 +161,7 @@ class FreesoundQuery {
       universalXMLHttpRequest(query)
         .then(response => {
             this._soundsInfo.set(id, response);
-            this._currentSoundsInfo.set(id, this._soundsInfo.get(id));
-            // this._soundsInfo.get(id).detailed = JSON.parse(xhr.responseText);
-
+            this._currentSoundsInfo.set(id, response);
             resolve(id);
         })
         //.catch(error => console.error(error.stack));

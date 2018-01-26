@@ -27,6 +27,8 @@ const loader = new loaders.AudioBufferLoader();
  *
  * @param {String} apiKey - Your api key, as generated from your freesound
  * developer account when creating a new application.
+ * @param {Boolean} [storeSoundsInfo=false] - Store all sounds detailed informations,
+ * including preview urls, to optimize the number of queries to the API (can be memory consuming).
  *
  * @example
  * <script type="text/javascript" src="simple-freesound.min.js"></script>
@@ -42,8 +44,8 @@ const loader = new loaders.AudioBufferLoader();
  * </script>
  */
 class SimpleFreesound extends FreesoundQuery {
-  constructor(apiKey) {
-    super(apiKey);
+  constructor(apiKey, storeSoundsInfo = false) {
+    super(apiKey, storeSoundsInfo);
     this._buffers =[];
   }
 
