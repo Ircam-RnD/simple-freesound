@@ -15,7 +15,7 @@ preview files on the hard drive in the server class.
 
 #### client example
 
-```html5
+```html
 <script type="text/javascript" src="simple-freesound.min.js"></script>
 
 <script type="text/javascript">
