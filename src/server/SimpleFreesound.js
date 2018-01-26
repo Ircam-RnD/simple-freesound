@@ -48,7 +48,7 @@ const defaults = {
  * @example
  * import SimpleFreesound from 'simple-freesound';
  *
- * const fs = new SimpleFreesound('myApiKey', {
+ * const fs = new SimpleFreesound('your_freesound_api_key_goes_here', {
  *   destination: './downloads'
  * });
  * fs.query({
